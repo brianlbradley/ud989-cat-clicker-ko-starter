@@ -51,6 +51,7 @@ var Cat = function(data) {
 
 
 
+
     this.levels = ko.computed(function() {
 
          if(this.clickCount()  > 80) {
@@ -109,6 +110,9 @@ var ViewModel = function() {
 
 		self.currentCat().clickCount(self.currentCat().clickCount() +1);
     self.currentCat().humanCounter(self.currentCat().humanCounter() + 1/7);
+ // var rounded = Math.round( number *10)/10;
+ // console.log(number);
+   // this.incrementCounter().toFixed([2]);
 		//former  this.clickcount(this.clickcount() + 1)
 		//var count = 0;
 		//count ++;
