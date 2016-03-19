@@ -48,11 +48,10 @@ var Cat = function(data) {
     this.nicknames = ko.observable(data.nicknames);
     this.humanCounter = ko.observable(data.humanCounter);
 
-
-
-
-
     this.levels = ko.computed(function() {
+       if(this.clickCount()  >= 100) {
+            return 'Great Grand Cat';
+        }
 
          if(this.clickCount()  > 80) {
             return 'WiseOldKat';
@@ -96,8 +95,8 @@ var ViewModel = function() {
 
 	this.currentCat = ko.observable( this.catList()[0] );
 
-  this.setCat = function(click) {
-    self.currentCat(click)
+  this.setCat = function(clickedCat) {  // when click function runs it passes in object
+    self.currentCat(clickedCat)
   }
 
   //this.incCounter = function() {
@@ -109,7 +108,7 @@ var ViewModel = function() {
 	this.incrementCounter = function() {
 
 		self.currentCat().clickCount(self.currentCat().clickCount() +1);
-    self.currentCat().humanCounter(self.currentCat().humanCounter() + 1/7);
+    self.currentCat().humanCounter(self.currentCat().humanCounter() + (1/7));
  // var rounded = Math.round( number *10)/10;
  // console.log(number);
    // this.incrementCounter().toFixed([2]);

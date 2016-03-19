@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KO Example</title>
+</head>
+<body>
+
+<table>
+    <thead>
+        <tr><th>First name</th><th>Last name</th></tr>
+    </thead>
+    <tbody data-bind="foreach: people">
+        <tr>
+            <td data-bind="text: firstName"></td>
+            <td data-bind="text: lastName"></td>
+        </tr>
+    </tbody>
+</table>
+
+
+ <script src="js/lib/knockout-3.2.0.js"></script>
+    ko.applyBindings({
+        people: [
+            { firstName: 'Bert', lastName: 'Bertington' },
+            { firstName: 'Charles', lastName: 'Charlesforth' },
+            { firstName: 'Denise', lastName: 'Dentiste' }
+        ]
+    });
+
+
+
+<ul data-bind="foreach: { data: myItems, afterAdd: yellowFadeIn }">
+    <li data-bind="text: $data"></li>
+</ul>
+
+<button data-bind="click: addItem">Add</button>
+
+<script src="js/lib/knockout-3.2.0.js"></script>
+    ko.applyBindings({
+        myItems: ko.observableArray([ 'A', 'B', 'C' ]),
+        yellowFadeIn: function(element, index, data) {
+            $(element).filter("li")
+                      .animate({ backgroundColor: 'yellow' }, 200)
+                      .animate({ backgroundColor: 'white' }, 800);
+        },
+        addItem: function() { this.myItems.push('New item'); }
+    });
+</script>
+
+ </body>
+ </html>
